@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Table, Button, Modal, Form } from 'react-bootstrap';
+import { Table, Button, Modal, Form,Row,Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import UserForm from './UserForm'; // Import the UserForm component
 
@@ -109,21 +109,31 @@ function UserList() {
 
   return (
     <div>
-      <h2>User List</h2>
+      <h2 className='mb-5'>User List</h2>
       
       {/* Button to open user form modal */}
-      <Button variant="primary" onClick={() => setShowFormModal(true)}>Create New User</Button>
+      <Row className="mb-3 align-items-center">
+      <Col xs={6} md={3} className="text-left">
+        <Button variant="primary" onClick={() => setShowFormModal(true)}>
+          Create New User
+        </Button>
+      </Col>
 
-      {/* Search Input */}
-      <Form.Group controlId="search">
-        <Form.Label>Search by Name</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter name to search"
-          value={searchQuery}
-          onChange={handleSearchChange} // Update search query on input change
-        />
-      </Form.Group>
+      <Col xs={6} md={9} className="text-right">
+        {/* Search Input */}
+        <Form.Group controlId="search" className="mb-0 d-flex align-items-center">
+        <Form.Label className="sr-only" style={{ marginRight: '30px' }}>Search by Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter name to search"
+            value={searchQuery}
+            onChange={handleSearchChange} // Update search query on input change
+            className="me-2 custom-width" // Apply custom class for width
+            style={{ width: '500px' }} // Alternatively, set width here
+          />
+        </Form.Group>
+      </Col>
+    </Row>
 
       <Table striped bordered hover>
         <thead>
